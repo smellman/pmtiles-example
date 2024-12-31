@@ -67,6 +67,8 @@
                 map.addControl(geolocation, 'top-right')
                 const scale = new maplibregl.ScaleControl()
                 map.addControl(scale, 'bottom-left')
+                const globe = new maplibregl.GlobeControl()
+                map.addControl(globe, 'top-right')
             })
 
         </script>
