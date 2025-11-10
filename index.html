@@ -4,7 +4,7 @@
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl/dist/maplibre-gl.css" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/maplibre-gl/dist/maplibre-gl.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/pmtiles@3.1.0/dist/pmtiles.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/pmtiles@4.3.0/dist/pmtiles.js"></script>
         <style>
             body {
                 margin: 0;
@@ -31,7 +31,8 @@
             let protocol = new pmtiles.Protocol();
             maplibregl.addProtocol("pmtiles",protocol.tile);
 
-            let URL = "https://tile.openstreetmap.jp/static/planet.pmtiles"
+            //let URL = "https://tile.openstreetmap.jp/static/planet.pmtiles"
+            let URL = "https://dev.smellman.org/static/planet.pmtiles"
             const styleUrl = "https://tile.openstreetmap.jp/styles/osm-bright/style.json"
 
             function formatBytes(a,b=2){if(!+a)return"0 Bytes";const c=0>b?0:b,d=Math.floor(Math.log(a)/Math.log(1024));return`${parseFloat((a/Math.pow(1024,d)).toFixed(c))} ${["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"][d]}`}
