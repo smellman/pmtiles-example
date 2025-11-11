@@ -31,24 +31,33 @@
             let protocol = new pmtiles.Protocol();
             maplibregl.addProtocol("pmtiles",protocol.tile);
 
-            let URL = "https://tile.openstreetmap.jp/static/planet.pmtiles"
+            let pmtilesUrl = "https://tile.openstreetmap.jp/static/planet.pmtiles"
             // let URL = "https://dev.smellman.org/static/planet.pmtiles"
             const styleUrl = "https://tile.openstreetmap.jp/styles/osm-bright/style.json"
 
             function formatBytes(a,b=2){if(!+a)return"0 Bytes";const c=0>b?0:b,d=Math.floor(Math.log(a)/Math.log(1024));return`${parseFloat((a/Math.pow(1024,d)).toFixed(c))} ${["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"][d]}`}
 
-            fetch(URL, {method:"HEAD"}).then(resp => {
+            fetch(pmtilesUrl, {method:"HEAD"}).then(resp => {
                 let length = resp.headers.get("Content-Length");
-                document.getElementById("overlay").innerHTML = `<a href="${URL}">${URL}</a> (${formatBytes(length)})`;
+                document.getElementById("overlay").innerHTML = `<a href="${pmtilesUrl}">${pmtilesUrl}</a> (${formatBytes(length)})`;
             })
 
             let style;
             fetch(styleUrl).then(resp => resp.json()).then(data => {
                 style = data
+
+                const base = new URL(styleUrl);
+                if (style.sprite && !style.sprite.startsWith("http")) {
+                    style.sprite = new URL(style.sprite, base).href;
+                }
+                if (style.glyphs && !style.glyphs.startsWith("http")) {
+                    style.glyphs = new URL(style.glyphs, base).href;
+                }
+
                 console.log(data)
                 style['sources']['openmaptiles'] = {
                     type: "vector",
-                    url: "pmtiles://" + URL,
+                    url: "pmtiles://" + pmtilesUrl,
                     attribution: 'Protomaps © <a href="https://openstreetmap.org">OpenStreetMap</a>',
                 }
                 const map = new maplibregl.Map({
