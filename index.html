@@ -2,7 +2,7 @@
     <head>
         <title>PMTiles MapLibre Example</title>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@^6.0.0/dist/maplibre-gl.css" />
+        <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@^6.1.0/dist/maplibre-gl.css" />
         <script src="https://cdn.jsdelivr.net/npm/pmtiles@4.4.1/dist/pmtiles.js"></script>
         <style>
             body {
@@ -26,7 +26,7 @@
         <div id="map"></div>
         <div id="overlay">
         <script type="module">
-            import * as maplibregl from 'https://unpkg.com/maplibre-gl@^6.0.0/dist/maplibre-gl.mjs';
+            import * as maplibregl from 'https://unpkg.com/maplibre-gl@^6.1.0/dist/maplibre-gl.mjs';
             // add the PMTiles plugin to the maplibregl global.
             let protocol = new pmtiles.Protocol();
             maplibregl.addProtocol("pmtiles",protocol.tile);
